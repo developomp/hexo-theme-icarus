@@ -124,6 +124,11 @@ Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
         };
     }) : null;
 
+    let _tmp = url_for(follow_link);
+    if (_tmp === '/') {
+        _tmp = undefined
+    }
+
     return {
         avatar: getAvatar(),
         avatarRounded: avatar_rounded,
@@ -147,7 +152,7 @@ Profile.Cacheable = cacheComponent(Profile, 'widget.profile', props => {
                 url: url_for('/tags')
             }
         },
-        followLink: url_for(follow_link),
+        followLink: _tmp,
         followTitle: __('widget.follow'),
         socialLinks
     };

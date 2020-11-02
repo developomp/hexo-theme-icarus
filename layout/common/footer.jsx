@@ -4,6 +4,7 @@ const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 class Footer extends Component {
     render() {
         const {
+            email,
             logo,
             logoUrl,
             siteUrl,
@@ -33,6 +34,7 @@ class Footer extends Component {
                         <a class="footer-logo is-block mb-2" href={siteUrl}>
                             {footerLogo}
                         </a>
+                        {email}
                         <p class="is-size-7">
                             <span dangerouslySetInnerHTML={{ __html: `&copy; ${siteYear} ${author || siteTitle}` }}></span>
                             &nbsp;&nbsp;Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>&nbsp;&&nbsp;
@@ -64,7 +66,7 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
     const { config, helper } = props;
     const { url_for, _p, date } = helper;
     const { logo, title, author, footer, plugins } = config;
-
+    let email = footer.email;
     const links = {};
     if (footer && footer.links) {
         Object.keys(footer.links).forEach(name => {
@@ -77,6 +79,7 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
     }
 
     return {
+        email,
         logo,
         logoUrl: url_for(logo),
         siteUrl: url_for('/'),
