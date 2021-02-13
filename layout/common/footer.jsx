@@ -49,6 +49,7 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
     const { config, helper } = props;
     const { url_for, _p, date } = helper;
     const { logo, title, author, footer, plugins } = config;
+
     const links = {};
     if (footer && footer.links) {
         Object.keys(footer.links).forEach(name => {
